@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.logo {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
+    font-size: 1.5rem; 
+}
