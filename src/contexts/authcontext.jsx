@@ -18,10 +18,16 @@ export function AuthProvider({ children }) {
     }
   }, [user]);
 
-  const login = ({ fullName, password }) => {
-    if (!fullName || !password) return;
-    setUser({ fullName, cart: [], likes: [] });
-  };
+  const login = ({ fullName, email, password }) => {
+  if (!fullName || !email || !password) return;
+
+  setUser({
+    fullName,
+    email,
+    cart: [],
+    likes: [],
+  });
+};
 
   const logout = () => setUser(null);
 

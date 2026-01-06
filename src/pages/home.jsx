@@ -44,18 +44,7 @@ export default function Home() {
 
   return (
     <div className="pb-12">
-      <div className="flex justify-center mb-6 px-4">
-        <input
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(0);
-          }}
-          placeholder="Search by title or location"
-          className="w-full max-w-md px-4 py-2 border rounded"
-        />
-      </div>
-
+      
       <Section title="Bungalows" items={group("bungalow")} />
       <Section title="Duplexes" items={group("duplex")} />
       <Section title="Villas" items={group("villa")} />

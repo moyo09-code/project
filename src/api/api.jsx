@@ -1,12 +1,9 @@
-import {properties} from "../data/properties";
+import { properties } from "./data";
 
-export async function getProperties() {
-  return {
-    data: properties
-  };
-}
+export const getProperties = async () => {
+  return { data: properties };
+};
 
-export async function getPropertyById(id) {
-  const property = properties.find(p => p.id === Number(id));
-  return { data: property };
-}
+export const getPropertyById = async (id) => {
+  return properties.find(p => p.id === Number(id));
+};
