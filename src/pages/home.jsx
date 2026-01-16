@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getProperties } from "../api/api";
 import Section from "../components/section";
+import Hero from "../components/hero";
+
 
 const PER_PAGE = 32;
 
@@ -43,8 +45,12 @@ export default function Home() {
   }
 
   return (
+    
     <div className="pb-12">
-      
+      <Hero
+       title="Welcome to Micasa Crest"
+        subtitle="Find your dream home today"
+      />
       <Section title="Bungalows" items={group("bungalow")} />
       <Section title="Duplexes" items={group("duplex")} />
       <Section title="Villas" items={group("villa")} />
