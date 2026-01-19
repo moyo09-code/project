@@ -11,6 +11,9 @@ import Like from "./pages/like";
 import Profile from "./pages/profile";
 import { Outlet } from "react-router-dom";
 import "./index.css";
+import Properties from "./pages/properties";
+import Services from "./pages/services";
+import Contact from "./pages/contact";
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -43,7 +46,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/property/:id" element={<PrivateRoute><PropertyDetails /></PrivateRoute>} />
             <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
             <Route path="/like" element={<PrivateRoute><Like /></PrivateRoute>} />
+            <Route path="/properties" element={<PrivateRoute><Properties /></PrivateRoute>} />
             <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} /> 
+            <Route path="/services" element={<PrivateRoute><Services /></PrivateRoute>} /> ]
+            <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

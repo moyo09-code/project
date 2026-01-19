@@ -1,16 +1,16 @@
-import { motion } from "framer-motion";
-import { FiHeart, FiPlus } from "react-icons/fi";
-import { useAuth } from "../contexts/authcontext";
+import { motion } from "framer-motion"
+import { FiHeart, FiPlus } from "react-icons/fi"
+import { useAuth } from "../contexts/authcontext"
 
 export default function Card({ property }) {
-  const { user, toggleLike, addToCart } = useAuth();
-  const liked = user?.likes?.some(p => p.id === property.id);
-  const inCart = user?.cart?.some(p => p.id === property.id);
+  const { user, toggleLike, addToCart } = useAuth()
+  const liked = user?.likes?.some(p => p.id === property.id)
+  const inCart = user?.cart?.some(p => p.id === property.id)
 
   return (
     <motion.div
       whileHover={{ y: -6, scale: 1.02 }}
-      className="bg-white rounded-xl shadow-md relative min-w-{260px} cursor-pointer"
+      className="bg-slate-200 rounded-xl shadow-sm relative cursor-pointer"
     >
       <img
         src={property.image}
@@ -21,8 +21,8 @@ export default function Card({ property }) {
       <div className="absolute top-2 right-2 flex flex-col gap-2">
         <button
           onClick={(e) => {
-            e.stopPropagation();
-            toggleLike(property);
+            e.stopPropagation()
+            toggleLike(property)
           }}
           className={`p-1 rounded-full ${
             liked ? "bg-red-600 text-white" : "bg-white text-red-600"
@@ -33,11 +33,11 @@ export default function Card({ property }) {
 
         <button
           onClick={(e) => {
-            e.stopPropagation();
-            addToCart(property);
+            e.stopPropagation()
+            addToCart(property)
           }}
           className={`p-1 rounded-full ${
-            inCart ? "bg-green-700 text-white" : "bg-white text-green-700"
+            inCart ? "bg-blue-700 text-white" : "bg-white text-blue-700"
           }`}
         >
           <FiPlus size={18} />
@@ -45,14 +45,14 @@ export default function Card({ property }) {
       </div>
 
       <div className="px-3 py-3">
-        <h3 className="font-semibold text-sm truncate">
+        <h3 className="font-semibold text-sm truncate text-blue-900">
           {property.title}
         </h3>
-        <p className="text-xs text-gray-500">{property.location}</p>
-        <p className="text-green-800 font-bold text-sm">
+        <p className="text-xs text-slate-500">{property.location}</p>
+        <p className="text-blue-800 font-bold text-sm">
           {property.price}
         </p>
       </div>
     </motion.div>
-  );
+  )
 }

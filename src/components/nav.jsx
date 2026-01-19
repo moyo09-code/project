@@ -13,6 +13,7 @@ export default function Navbar() {
   const location = useLocation()
   const navRefs = useRef({})
   const navListRef = useRef(null)
+  const isHome = location.pathname === "/"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight - 80)
@@ -39,17 +40,21 @@ export default function Navbar() {
 
   const navClass = ({ isActive }) =>
     `relative px-2 py-1 flex items-center gap-1 transition-colors duration-300 ${
-      isActive ? "text-white font-semibold" : "text-white hover:text-green-300"
+      isActive ? "text-white font-semibold" : "text-slate-200 hover:text-blue-300"
     }`
 
   return (
     <nav
       className={`w-full z-50 transition-all duration-300 ${
-        scrolled ? "fixed top-0 bg-green-900 shadow-md" : "absolute top-0 bg-none"
+        isHome
+          ? scrolled
+            ? "fixed top-0 bg-blue-950 shadow-md"
+            : "absolute top-0 bg-transparent"
+          : "fixed top-0 bg-blue-950 shadow-md"
       }`}
     >
       <div className="max-w-6xl mx-auto p-4 flex justify-between items-center relative">
-        <NavLink to="/" className="logo text-xl text-white">
+        <NavLink to="/" className="logo text-xl font-semibold text-white">
           Micasa Crest
         </NavLink>
 
@@ -64,6 +69,15 @@ export default function Navbar() {
                 <FiHeart size={15} />
                 Likes
               </NavLink>
+              <NavLink to="/properties" ref={el => (navRefs.current["/properties"] = el)} className={navClass}>
+                Properties
+              </NavLink>
+              <NavLink to="/services" ref={el => (navRefs.current["/services"] = el)} className={navClass}>
+               Services
+              </NavLink>
+               <NavLink to="/contact" ref={el => (navRefs.current["/contact"] = el)} className={navClass}>
+               Contact
+              </NavLink>
             </>
           )}
 
@@ -73,20 +87,20 @@ export default function Navbar() {
                 Welcome back, {user.fullName}
               </NavLink>
               <button
-                onClick={() => confirm("Logout?") && logout()}
-                className="bg-white text-green-900 px-3 py-1 rounded"
+                onClick={() => logout()}
+                className="bg-white text-blue-950 px-3 py-1 rounded hover:bg-slate-100"
               >
                 Logout
               </button>
             </>
           ) : (
-            <NavLink to="/login" className="bg-white text-green-900 px-3 py-1 rounded">
+            <NavLink to="/login" className="bg-white text-blue-950 px-3 py-1 rounded">
               Login
             </NavLink>
           )}
 
           <span
-            className="absolute -bottom-1 h-1 bg-green-300 rounded-full transition-all duration-300"
+            className="absolute -bottom-1 h-1 bg-blue-300 rounded-full transition-all duration-300"
             style={{
               width: `${underlineProps.width}px`,
               transform: `translateX(${underlineProps.left}px)`
@@ -110,16 +124,25 @@ export default function Navbar() {
               >
                 {user && (
                   <>
-                    <NavLink to="/cart" onClick={() => setIsOpen(false)} className="px-4 py-3 text-green-700">
+                    <NavLink to="/cart" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
                       Cart
                     </NavLink>
-                    <NavLink to="/like" onClick={() => setIsOpen(false)} className="px-4 py-3 text-green-700">
+                    <NavLink to="/like" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
                       Likes
                     </NavLink>
-                    <NavLink to="/profile" onClick={() => setIsOpen(false)} className="px-4 py-3 text-green-700">
+                    <NavLink to="/properties" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
+                      Properties
+                    </NavLink>
+                    <NavLink to="/profile" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
                       Profile
                     </NavLink>
-                    <button onClick={() => logout()} className="px-4 py-3 text-left">
+                    <NavLink to="/Services" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
+                      Services
+                    </NavLink>
+                    <NavLink to="/contact" onClick={() => setIsOpen(false)} className="px-4 py-3 text-blue-800 hover:bg-slate-100">
+                      Contact
+                    </NavLink>
+                    <button onClick={() => logout()} className="px-4 py-3 text-left text-blue-800 hover:bg-slate-100">
                       Logout
                     </button>
                   </>

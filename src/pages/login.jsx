@@ -53,66 +53,51 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-green-50">
+    <div className="flex justify-center items-center h-screen bg-slate-50">
       <form
         className="bg-white p-6 sm:p-8 rounded-2xl shadow-md w-full max-w-md"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl sm:text-3xl font-bold text-green-900 mb-6 text-center">
+        <h1 className="text-3xl font-bold text-blue-900 mb-6 text-center">
           Login
         </h1>
 
-        <label className="block mb-2 text-green-900 text-sm sm:text-base">
-          Full Name
-        </label>
+        <label className="block mb-2 text-blue-900">Full Name</label>
         <input
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          placeholder="Enter your full name"
-          className={`w-full p-2 mb-1 border rounded-xl focus:outline-green-900 text-sm sm:text-base ${
-            errors.fullName ? "border-red-500" : "border-gray-300"
+          className={`w-full p-2 mb-1 border rounded-xl focus:outline-blue-900 ${
+            errors.fullName ? "border-red-500" : "border-slate-300"
           }`}
         />
-        {errors.fullName && (
-          <p className="text-red-500 text-xs mb-2">{errors.fullName}</p>
-        )}
+        {errors.fullName && <p className="text-red-500 text-xs mb-2">{errors.fullName}</p>}
 
-        <label className="block mb-2 text-green-900 text-sm sm:text-base">
-          Email
-        </label>
+        <label className="block mb-2 text-blue-900">Email</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          className={`w-full p-2 mb-1 border rounded-xl focus:outline-green-900 text-sm sm:text-base ${
-            errors.email ? "border-red-500" : "border-gray-300"
+          className={`w-full p-2 mb-1 border rounded-xl focus:outline-blue-900 ${
+            errors.email ? "border-red-500" : "border-slate-300"
           }`}
         />
-        {errors.email && (
-          <p className="text-red-500 text-xs mb-2">{errors.email}</p>
-        )}
+        {errors.email && <p className="text-red-500 text-xs mb-2">{errors.email}</p>}
 
-        <label className="block mb-2 text-green-900 text-sm sm:text-base">
-          Password
-        </label>
+        <label className="block mb-2 text-blue-900">Password</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password (4-8 chars)"
-          className={`w-full p-2 mb-3 border rounded-xl focus:outline-green-900 text-sm sm:text-base ${
-            errors.password ? "border-red-500" : "border-gray-300"
+          className={`w-full p-2 mb-3 border rounded-xl focus:outline-blue-900 ${
+            errors.password ? "border-red-500" : "border-slate-300"
           }`}
         />
-        {errors.password && (
-          <p className="text-red-500 text-xs mb-4">{errors.password}</p>
-        )}
+        {errors.password && <p className="text-red-500 text-xs mb-4">{errors.password}</p>}
 
         <button
           type="submit"
-          className="w-full bg-green-900 text-white py-2 sm:py-3 rounded-xl hover:bg-green-800 transition text-sm sm:text-base"
+          className="w-full bg-blue-900 text-white py-3 rounded-xl hover:bg-blue-800 transition"
         >
           Login
         </button>
