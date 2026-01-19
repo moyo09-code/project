@@ -40,20 +40,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/login" element={<LoginWrapper />} />
-            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-            <Route path="/property/:id" element={<PrivateRoute><PropertyDetails /></PrivateRoute>} />
-            <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
-            <Route path="/like" element={<PrivateRoute><Like /></PrivateRoute>} />
-            <Route path="/properties" element={<PrivateRoute><Properties /></PrivateRoute>} />
-            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} /> 
-            <Route path="/services" element={<PrivateRoute><Services /></PrivateRoute>} /> ]
-            <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />
-          </Route>
+  <Route element={<Layout />}>
+    <Route path="/login" element={<LoginWrapper />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+    <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+    <Route path="/property/:id" element={<PrivateRoute><PropertyDetails /></PrivateRoute>} />
+    <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+    <Route path="/like" element={<PrivateRoute><Like /></PrivateRoute>} />
+    <Route path="/properties" element={<PrivateRoute><Properties /></PrivateRoute>} />
+    <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} /> 
+    <Route path="/services" element={<PrivateRoute><Services /></PrivateRoute>} />
+    <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />
+  </Route>
+
+  <Route path="*" element={<Navigate to="/" replace />} />
+</Routes>
+
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,58 +1,39 @@
-import { motion } from "framer-motion"
-import { FiHeart, FiPlus } from "react-icons/fi"
-import { useAuth } from "../contexts/authcontext"
+import { useNavigate } from "react-router-dom";
 
 export default function Card({ property }) {
-  const { user, toggleLike, addToCart } = useAuth()
-  const liked = user?.likes?.some(p => p.id === property.id)
-  const inCart = user?.cart?.some(p => p.id === property.id)
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/property/${property.id}`);
+  };
 
   return (
-    <motion.div
-      whileHover={{ y: -6, scale: 1.02 }}
-      className="bg-slate-200 rounded-xl shadow-sm relative cursor-pointer"
+    <div
+      onClick={handleClick}
+      className="w-72 bg-white rounded-2xl shadow-md overflow-hidden shrink-0 cursor-pointer hover:scale-105 transition-transform"
     >
       <img
-        src={property.image}
+        src={property.images[0]}
         alt={property.title}
-        className="h-48 w-full rounded-t-xl object-cover"
+        className="w-full h-44 object-cover"
       />
 
-      <div className="absolute top-2 right-2 flex flex-col gap-2">
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            toggleLike(property)
-          }}
-          className={`p-1 rounded-full ${
-            liked ? "bg-red-600 text-white" : "bg-white text-red-600"
-          }`}
-        >
-          <FiHeart size={18} />
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            addToCart(property)
-          }}
-          className={`p-1 rounded-full ${
-            inCart ? "bg-blue-700 text-white" : "bg-white text-blue-700"
-          }`}
-        >
-          <FiPlus size={18} />
-        </button>
-      </div>
-
-      <div className="px-3 py-3">
-        <h3 className="font-semibold text-sm truncate text-blue-900">
-          {property.title}
-        </h3>
-        <p className="text-xs text-slate-500">{property.location}</p>
-        <p className="text-blue-800 font-bold text-sm">
-          {property.price}
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-gray-800">{property.title}</h3>
+        <p className="text-sm text-gray-500 mb-2">
+          {property.location.address}, {property.location.city}
         </p>
+        <p className="text-green-700 font-bold text-lg">
+          {property.currency} {property.price.toLocaleString()}
+          {property.paymentFrequency ? ` / ${property.paymentFrequency}` : ""}
+        </p>
+
+        <div className="flex justify-between mt-3 text-sm text-gray-600">
+          <span>{property.details.bedrooms} Beds</span>
+          <span>{property.details.bathrooms} Baths</span>
+          <span>{property.details.parking} Parking</span>
+        </div>
       </div>
-    </motion.div>
-  )
+    </div>
+  );
 }
